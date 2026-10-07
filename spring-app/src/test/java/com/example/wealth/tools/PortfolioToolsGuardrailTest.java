@@ -5,7 +5,6 @@ import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 import com.example.wealth.portfolio.Exposure;
 import com.example.wealth.portfolio.PortfolioRepository;
-import java.nio.file.Path;
 import java.util.Map;
 import org.junit.jupiter.api.Test;
 import org.springframework.ai.chat.model.ToolContext;
@@ -16,7 +15,7 @@ import tools.jackson.databind.json.JsonMapper;
 class PortfolioToolsGuardrailTest {
 
     private final PortfolioTools tools =
-            new PortfolioTools(new PortfolioRepository(JsonMapper.builder().build(), Path.of("../data")));
+            new PortfolioTools(new PortfolioRepository(JsonMapper.builder().build(), "../data"));
 
     @Test
     void noToolLetsTheModelChooseTheClient() {

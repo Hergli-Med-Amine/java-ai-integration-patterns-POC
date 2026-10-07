@@ -15,8 +15,9 @@ public class PortfolioRepository {
 
     private final Map<String, Client> clientsById;
 
-    public PortfolioRepository(JsonMapper jsonMapper, @Value("${wealth.data-dir}") Path dataDir) {
-        List<Client> clients = jsonMapper.readValue(dataDir.resolve("clients.json").toFile(), new TypeReference<>() {});
+    // Injected as a String: Spring's String-to-Path conversion resolves "../data" as a servlet resource and fails.
+    public PortfolioRepository(JsonMapper jsonMapper, @Value("${wealth.data-dir}") String dataDir) {
+        List<Client> clients = jsonMapper.readValue(Path.of(dataDir, "clients.json").toFile(), new TypeReference<>() {});
         this.clientsById = clients.stream().collect(Collectors.toUnmodifiableMap(Client::id, Function.identity()));
     }
 

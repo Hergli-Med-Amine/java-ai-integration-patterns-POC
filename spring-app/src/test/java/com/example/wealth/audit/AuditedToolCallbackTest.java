@@ -5,7 +5,6 @@ import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 import com.example.wealth.portfolio.PortfolioRepository;
 import com.example.wealth.tools.PortfolioTools;
-import java.nio.file.Path;
 import java.util.Arrays;
 import java.util.Map;
 import org.junit.jupiter.api.Test;
@@ -21,7 +20,7 @@ import tools.jackson.databind.json.JsonMapper;
 class AuditedToolCallbackTest {
 
     private final ToolCallback exposure = Arrays.stream(AuditedToolCallback.audited(ToolCallbacks.from(
-                    new PortfolioTools(new PortfolioRepository(JsonMapper.builder().build(), Path.of("../data"))))))
+                    new PortfolioTools(new PortfolioRepository(JsonMapper.builder().build(), "../data")))))
             .filter(callback -> callback.getToolDefinition().name().equals("exposure"))
             .findFirst()
             .orElseThrow();

@@ -1,5 +1,6 @@
 package com.example.wealth.portfolio;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
 import java.math.BigDecimal;
 
 public record Holding(
@@ -13,6 +14,7 @@ public record Holding(
 
     public enum AssetClass { EQUITY, BOND, FUND, CRYPTO, CASH }
 
+    @JsonProperty
     public BigDecimal marketValue() {
         return quantity.multiply(price);
     }

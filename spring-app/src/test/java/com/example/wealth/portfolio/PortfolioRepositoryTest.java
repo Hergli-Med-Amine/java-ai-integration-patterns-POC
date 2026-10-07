@@ -4,7 +4,6 @@ import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 import com.example.wealth.portfolio.Exposure.Dimension;
-import java.util.NoSuchElementException;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -31,7 +30,7 @@ class PortfolioRepositoryTest {
     @Test
     void unknownClientIsRejected() {
         assertThatThrownBy(() -> repository.find("C-9999"))
-                .isInstanceOf(NoSuchElementException.class)
+                .isInstanceOf(PortfolioRepository.UnknownClientException.class)
                 .hasMessageContaining("C-9999");
     }
 }

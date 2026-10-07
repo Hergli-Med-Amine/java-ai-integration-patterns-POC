@@ -8,4 +8,24 @@ Both apps implement the same use case: a wealth-management assistant. A signed-i
 
 All data is fictional and lives in `data/`, shared by both apps. Domain terms are defined in [CONTEXT.md](CONTEXT.md), decisions in [docs/adr](docs/adr).
 
-The remaining sections (how to run, architecture, comparison, findings, recommendations, limitations) are written as the apps are built.
+## How to run
+
+Requirements: Java 21, Maven 3.9, [Ollama](https://ollama.com) running locally with a model that supports tool calling. Setup steps are in [docs/ollama-setup.md](docs/ollama-setup.md).
+
+```
+ollama pull qwen3:8b
+cd spring-app
+mvn spring-boot:run
+curl -s localhost:8080/assistant -H 'X-Client-Id: C-1002' -H 'Content-Type: application/json' \
+     -d '{"question":"What is my exposure to tech?"}'
+```
+
+`OLLAMA_BASE_URL` and `OLLAMA_CHAT_MODEL` override the defaults. `X-Client-Id` stands in for an authenticated user (ADR 0001); the fixture clients are `C-1001`, `C-1002` and `C-1003`. Tests run without Ollama: `mvn test`.
+
+The remaining sections (architecture, comparison, findings, recommendations, limitations) are written as the apps are built.
+
+## Disclosure
+
+This project is a proof of concept, built to compare integration patterns and to support the findings above. It is not a finished product and is not meant for production use: authentication, persistence and operations are deliberately out of scope, and all data is fictional.
+
+It was co-developed with Claude Code, using AI-assisted development.

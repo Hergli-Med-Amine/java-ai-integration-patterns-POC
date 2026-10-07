@@ -3,7 +3,6 @@ package com.example.wealth.portfolio;
 import java.nio.file.Path;
 import java.util.List;
 import java.util.Map;
-import java.util.NoSuchElementException;
 import java.util.function.Function;
 import java.util.stream.Collectors;
 import org.springframework.beans.factory.annotation.Value;
@@ -24,8 +23,14 @@ public class PortfolioRepository {
     public Client find(String clientId) {
         Client client = clientsById.get(clientId);
         if (client == null) {
-            throw new NoSuchElementException("Unknown client: " + clientId);
+            throw new UnknownClientException(clientId);
         }
         return client;
+    }
+
+    public static class UnknownClientException extends RuntimeException {
+        UnknownClientException(String clientId) {
+            super("Unknown client: " + clientId);
+        }
     }
 }

@@ -5,14 +5,12 @@ import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 import com.example.wealth.portfolio.Exposure.Dimension;
 import org.junit.jupiter.api.Test;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.test.context.SpringBootTest;
+import tools.jackson.databind.json.JsonMapper;
 
-@SpringBootTest
 class PortfolioRepositoryTest {
 
-    @Autowired
-    PortfolioRepository repository;
+    private final PortfolioRepository repository =
+            new PortfolioRepository(JsonMapper.builder().build(), "../data");
 
     @Test
     void loadsSharedFixtures() {

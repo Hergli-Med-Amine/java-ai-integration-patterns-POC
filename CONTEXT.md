@@ -20,6 +20,8 @@ All data is fictional. All amounts are in EUR; there is no currency conversion.
 
 **Policy document** – a plain-text document in `data/documents/` that applies to all clients (investment policy, fee schedule, risk disclosure). The assistant answers questions about these via retrieval (RAG), not via tools.
 
+**Document section** – one numbered section of a policy document, the unit that is embedded and retrieved. Each section carries its document's title.
+
 **Tool** – an operation the model may call, exposing a portfolio query for the current client. Tools have no client id parameter.
 
 **Tool call** – one invocation of a tool by the model or by an MCP client.

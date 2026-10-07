@@ -15,9 +15,10 @@ public class PortfolioRepository {
 
     private final Map<String, Client> clientsById;
 
-    // Injected as a String: Spring's String-to-Path conversion resolves "../data" as a servlet resource and fails.
+    // Injected as a String: in a web app Spring would convert a Path through the servlet context and reject "../data".
     public PortfolioRepository(JsonMapper jsonMapper, @Value("${wealth.data-dir}") String dataDir) {
-        List<Client> clients = jsonMapper.readValue(Path.of(dataDir, "clients.json").toFile(), new TypeReference<>() {});
+        Path clientsFile = Path.of(dataDir, "clients.json");
+        List<Client> clients = jsonMapper.readValue(clientsFile.toFile(), new TypeReference<>() {});
         this.clientsById = clients.stream().collect(Collectors.toUnmodifiableMap(Client::id, Function.identity()));
     }
 

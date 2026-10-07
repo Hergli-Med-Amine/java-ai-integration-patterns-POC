@@ -22,7 +22,7 @@ curl -s localhost:8080/assistant -H 'X-Client-Id: C-1002' -H 'Content-Type: appl
      -d '{"question":"What is my exposure to tech?"}'
 ```
 
-`OLLAMA_BASE_URL` and `OLLAMA_CHAT_MODEL` override the defaults. `X-Client-Id` stands in for an authenticated user (ADR 0001); the fixture clients are `C-1001`, `C-1002` and `C-1003`. Tests run without Ollama: `mvn test`.
+`OLLAMA_BASE_URL`, `OLLAMA_CHAT_MODEL` and `OLLAMA_EMBEDDING_MODEL` override the defaults. `X-Client-Id` stands in for an authenticated user (ADR 0001); the fixture clients are `C-1001`, `C-1002` and `C-1003`. Tests run without Ollama: `mvn test`.
 
 The remaining sections (architecture, comparison, findings, recommendations, limitations) are written as the apps are built.
 

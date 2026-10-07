@@ -3,7 +3,8 @@
 set -euo pipefail
 
 OLLAMA_VERSION="${OLLAMA_VERSION:-0.35.1}"
-MODEL="${OLLAMA_CHAT_MODEL:-qwen2.5:1.5b}"
+CHAT_MODEL="${OLLAMA_CHAT_MODEL:-qwen2.5:1.5b}"
+EMBEDDING_MODEL="${OLLAMA_EMBEDDING_MODEL:-nomic-embed-text}"
 INSTALL_DIR="$(cd "$(dirname "$0")/.." && pwd)/.ollama"
 export OLLAMA_MODELS="$INSTALL_DIR/models"
 export OLLAMA_HOST="127.0.0.1:11434"
@@ -38,6 +39,6 @@ install() {
 case "${1:-}" in
     install) install ;;
     serve) exec "$(binary)" serve ;;
-    pull) "$(binary)" pull "$MODEL" ;;
+    pull) "$(binary)" pull "$CHAT_MODEL" && "$(binary)" pull "$EMBEDDING_MODEL" ;;
     *) echo "usage: scripts/ollama.sh install | serve | pull" >&2; exit 1 ;;
 esac

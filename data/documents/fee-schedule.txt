@@ -1,0 +1,23 @@
+Fee Schedule for Private Clients
+Fictional document written for a proof of concept. Not financial advice.
+
+1. Management fee
+The annual management fee is charged quarterly on the average portfolio value of the quarter.
+Portfolio value up to EUR 250,000: 1.00% per year.
+Portfolio value from EUR 250,000 to EUR 1,000,000: 0.80% per year.
+Portfolio value above EUR 1,000,000: 0.60% per year.
+The rate of the band reached applies to the whole portfolio value.
+
+2. Custody fee
+Securities custody costs 0.15% per year of the value of securities held, with a minimum of EUR 100 per year. Cash balances are not subject to the custody fee.
+
+3. Transaction fees
+Equities and exchange-traded products: 0.25% of the order value, minimum EUR 25 per order.
+Bonds: 0.15% of the order value, minimum EUR 25 per order.
+Investment funds: no transaction fee for funds managed by the bank, 0.50% for third-party funds.
+Crypto exchange-traded products: 0.50% of the order value, minimum EUR 25 per order.
+
+4. Other fees
+Account opening and closing are free of charge.
+Transfer of securities to another bank: EUR 50 per position.
+Paper statements: EUR 5 per statement. Electronic statements are free of charge.

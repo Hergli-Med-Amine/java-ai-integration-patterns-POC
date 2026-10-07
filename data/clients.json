@@ -1,0 +1,38 @@
+[
+  {
+    "id": "C-1001",
+    "name": "Anna Keller",
+    "riskProfile": "BALANCED",
+    "holdings": [
+      { "symbol": "AAPL", "name": "Apple Inc.", "assetClass": "EQUITY", "sector": "TECHNOLOGY", "region": "NORTH_AMERICA", "quantity": 120, "price": 210.00 },
+      { "symbol": "MSFT", "name": "Microsoft Corp.", "assetClass": "EQUITY", "sector": "TECHNOLOGY", "region": "NORTH_AMERICA", "quantity": 40, "price": 390.00 },
+      { "symbol": "NESN", "name": "Nestle S.A.", "assetClass": "EQUITY", "sector": "CONSUMER_STAPLES", "region": "EUROPE", "quantity": 150, "price": 92.00 },
+      { "symbol": "WORLD-ETF", "name": "Global Equity Index Fund", "assetClass": "FUND", "sector": "DIVERSIFIED", "region": "GLOBAL", "quantity": 300, "price": 95.00 },
+      { "symbol": "BUND-2034", "name": "German Federal Bond 2034", "assetClass": "BOND", "sector": "GOVERNMENT", "region": "EUROPE", "quantity": 400, "price": 98.50 },
+      { "symbol": "CASH-EUR", "name": "Cash account", "assetClass": "CASH", "sector": "CASH", "region": "EUROPE", "quantity": 12000, "price": 1.00 }
+    ]
+  },
+  {
+    "id": "C-1002",
+    "name": "Marco Rossi",
+    "riskProfile": "GROWTH",
+    "holdings": [
+      { "symbol": "NVDA", "name": "NVIDIA Corp.", "assetClass": "EQUITY", "sector": "TECHNOLOGY", "region": "NORTH_AMERICA", "quantity": 200, "price": 120.00 },
+      { "symbol": "ASML", "name": "ASML Holding N.V.", "assetClass": "EQUITY", "sector": "TECHNOLOGY", "region": "EUROPE", "quantity": 30, "price": 650.00 },
+      { "symbol": "NOVO", "name": "Novo Nordisk A/S", "assetClass": "EQUITY", "sector": "HEALTH_CARE", "region": "EUROPE", "quantity": 100, "price": 85.00 },
+      { "symbol": "BTC-ETP", "name": "Physical Bitcoin ETP", "assetClass": "CRYPTO", "sector": "CRYPTO", "region": "GLOBAL", "quantity": 250, "price": 32.00 },
+      { "symbol": "CASH-EUR", "name": "Cash account", "assetClass": "CASH", "sector": "CASH", "region": "EUROPE", "quantity": 3000, "price": 1.00 }
+    ]
+  },
+  {
+    "id": "C-1003",
+    "name": "Sofia Lindqvist",
+    "riskProfile": "CONSERVATIVE",
+    "holdings": [
+      { "symbol": "BUND-2030", "name": "German Federal Bond 2030", "assetClass": "BOND", "sector": "GOVERNMENT", "region": "EUROPE", "quantity": 600, "price": 99.20 },
+      { "symbol": "EIB-2029", "name": "European Investment Bank Bond 2029", "assetClass": "BOND", "sector": "SUPRANATIONAL", "region": "EUROPE", "quantity": 300, "price": 101.10 },
+      { "symbol": "NESN", "name": "Nestle S.A.", "assetClass": "EQUITY", "sector": "CONSUMER_STAPLES", "region": "EUROPE", "quantity": 60, "price": 92.00 },
+      { "symbol": "CASH-EUR", "name": "Cash account", "assetClass": "CASH", "sector": "CASH", "region": "EUROPE", "quantity": 25000, "price": 1.00 }
+    ]
+  }
+]

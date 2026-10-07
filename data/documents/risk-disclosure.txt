@@ -1,0 +1,20 @@
+Risk Disclosure for Investment Products
+Fictional document written for a proof of concept. Not financial advice.
+
+1. General
+The value of investments can go down as well as up. Clients may get back less than they invested. Past performance is not a reliable indicator of future results.
+
+2. Equity risk
+Share prices can fall sharply because of company results, sector developments or general market conditions. A portfolio concentrated in one sector, such as technology, is more exposed to developments in that sector than a diversified portfolio.
+
+3. Interest rate and credit risk
+Bond prices fall when interest rates rise. The longer the remaining maturity, the stronger the effect. If an issuer cannot meet its obligations, the bond holder may lose part or all of the invested amount.
+
+4. Currency risk
+Investments denominated in a currency other than the client's reference currency are exposed to exchange rate movements, which can reduce or increase returns.
+
+5. Crypto-asset risk
+Crypto-assets are highly volatile and have no intrinsic value guaranteed by an issuer or a central bank. Their price can fall to zero. Exchange-traded products on crypto-assets carry the additional risk of the product issuer and of the custodian holding the underlying asset. Crypto-assets are not covered by any deposit guarantee scheme.
+
+6. Liquidity risk
+Some investments cannot always be sold quickly or at a fair price, in particular in stressed markets.

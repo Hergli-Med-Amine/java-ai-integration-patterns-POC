@@ -1,0 +1,25 @@
+Investment Policy for Discretionary and Advisory Mandates
+Fictional document written for a proof of concept. Not financial advice.
+
+1. Purpose
+This policy sets the limits within which client portfolios are built and monitored. It applies to every client mandate, whatever the portfolio size. Where a portfolio is outside these limits, the relationship manager contacts the client and agrees a plan to bring it back within limits.
+
+2. Risk profiles
+Each client is assigned one risk profile after a suitability assessment. The profile is reviewed every two years, or earlier if the client's situation changes.
+CONSERVATIVE: capital preservation first. Equities and funds between 0% and 30% of portfolio value, bonds between 50% and 90%, cash between 5% and 30%.
+BALANCED: long-term growth with moderate fluctuations. Equities and funds between 30% and 60%, bonds between 20% and 60%, cash between 2% and 20%.
+GROWTH: long-term growth, large fluctuations accepted. Equities and funds between 60% and 95%, bonds up to 30%, cash between 1% and 15%.
+
+3. Concentration limits
+A single issuer may not exceed 10% of portfolio value, except government and supranational bonds rated AA or better.
+A single sector may not exceed 35% of portfolio value for CONSERVATIVE and BALANCED clients, and 50% for GROWTH clients. Broad index funds count as DIVERSIFIED and are not attributed to individual sectors.
+A single region outside the client's home region may not exceed 60% of portfolio value.
+
+4. Crypto-assets
+Crypto-assets are permitted only for clients with the GROWTH risk profile.
+Exposure to crypto-assets may not exceed 5% of portfolio value.
+Only exchange-traded products backed by the underlying asset are permitted. The bank does not hold crypto-assets directly on behalf of clients and does not offer custody of private keys.
+Clients must acknowledge the crypto-asset risk disclosure before the first purchase.
+
+5. Monitoring and rebalancing
+Portfolios are checked against these limits every business day. A breach caused by market movements is reviewed at the next quarterly meeting. A breach caused by a client instruction must be documented and acknowledged by the client in writing.

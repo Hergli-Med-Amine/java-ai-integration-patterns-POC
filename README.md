@@ -10,10 +10,12 @@ All data is fictional and lives in `data/`, shared by both apps. Domain terms ar
 
 ## How to run
 
-Requirements: Java 21, Maven 3.9, [Ollama](https://ollama.com) running locally with a model that supports tool calling. Setup steps are in [docs/ollama-setup.md](docs/ollama-setup.md).
+Requirements: Java 21, Maven 3.9, and on Linux/macOS `curl` plus `zstd` or `unzip`. Ollama is installed inside the repository by a script; setup, Windows steps and troubleshooting are in [docs/ollama-setup.md](docs/ollama-setup.md).
 
 ```
-ollama pull qwen3:8b
+scripts/ollama.sh install
+scripts/ollama.sh serve        # keep running; continue in a second terminal
+scripts/ollama.sh pull
 cd spring-app
 mvn spring-boot:run
 curl -s localhost:8080/assistant -H 'X-Client-Id: C-1002' -H 'Content-Type: application/json' \

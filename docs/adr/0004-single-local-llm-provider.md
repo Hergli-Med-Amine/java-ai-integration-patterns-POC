@@ -6,7 +6,7 @@ Status: accepted
 Both frameworks abstract several providers. Supporting more than one would add configuration and test paths without adding to the comparison. Client portfolio data should not leave the machine in a PoC that may be run on a laptop.
 
 ## Decision
-Both apps use Ollama only. Base URL and model come from `OLLAMA_BASE_URL` and `OLLAMA_CHAT_MODEL` (defaults `http://localhost:11434` and `qwen3:8b`). Tests replace Ollama with a fake HTTP server, so they need no model and no network.
+Both apps use Ollama only. Base URL and model come from `OLLAMA_BASE_URL` and `OLLAMA_CHAT_MODEL` (defaults `http://localhost:11434` and `qwen2.5:1.5b`, small enough for 2 GB of VRAM). Ollama itself is installed into the repository by `scripts/ollama.sh`, at a pinned version. Tests replace Ollama with a fake HTTP server, so they need no model and no network.
 
 ## Consequences
 - No API keys, no cost, no data sent to a third party.

@@ -14,4 +14,8 @@ public record Client(String id, String name, RiskProfile riskProfile, List<Holdi
     public Exposure exposureBy(Exposure.Dimension dimension) {
         return Exposure.of(dimension, holdings);
     }
+
+    public PolicyCheck policyCheck() {
+        return PolicyCheck.of(riskProfile, holdings);
+    }
 }

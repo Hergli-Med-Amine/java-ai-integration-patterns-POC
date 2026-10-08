@@ -4,6 +4,7 @@ import com.example.wealth.portfolio.Client;
 import com.example.wealth.portfolio.Client.RiskProfile;
 import com.example.wealth.portfolio.Exposure;
 import com.example.wealth.portfolio.Holding;
+import com.example.wealth.portfolio.PolicyCheck;
 import com.example.wealth.portfolio.PortfolioRepository;
 import java.math.BigDecimal;
 import java.util.List;
@@ -40,6 +41,11 @@ public class PortfolioTools {
     public Exposure exposure(@ToolParam(description = "SECTOR, REGION or ASSET_CLASS") Exposure.Dimension dimension,
                              ToolContext context) {
         return currentClient(context).exposureBy(dimension);
+    }
+
+    @Tool(description = "Checks the signed-in client's portfolio against the investment policy limits: the asset-class ranges of the client's risk profile and the crypto-asset rules. For each limit: current percent, allowed range, status (WITHIN, ABOVE_MAX, BELOW_MIN, NOT_PERMITTED) and the deviation in percentage points and EUR. Also lists the limits it does not check. Use it for any question about whether the portfolio is within policy.")
+    public PolicyCheck policyCheck(ToolContext context) {
+        return currentClient(context).policyCheck();
     }
 
     // The client id is put into the tool context by the application, never by the model (ADR 0001).

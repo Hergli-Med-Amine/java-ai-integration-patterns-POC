@@ -79,6 +79,36 @@ class AssistantEndToEndTest {
     }
 
     @Test
+    void documentExcerptsDoNotStopTheModelFromUsingTools() throws Exception {
+        ollama.respond("""
+                {"model":"test","message":{"role":"assistant","content":"ok"},"done":true,"done_reason":"stop"}""");
+
+        ask("C-1002", "Is my crypto exposure within policy?").andExpect(status().isOk());
+
+        // Spring AI's default advisor template says to answer only from the excerpts, which suppressed tool calls.
+        assertThat(ollama.chatRequests()).singleElement().asString()
+                .doesNotContain("If the answer is not in the context")
+                .contains("For figures about the client's portfolio, use the tools");
+    }
+
+    @Test
+    void policyCheckToolReportsTheBreachComputedInJava(CapturedOutput output) throws Exception {
+        ollama.respond("""
+                {"model":"test","message":{"role":"assistant","content":"",
+                 "tool_calls":[{"function":{"name":"policyCheck","arguments":{}}}]},
+                 "done":true,"done_reason":"stop"}""");
+        ollama.respond("""
+                {"model":"test","message":{"role":"assistant","content":"Crypto exceeds the 5% limit by 7.70 points."},
+                 "done":true,"done_reason":"stop"}""");
+
+        ask("C-1002", "Is my crypto exposure within policy?").andExpect(status().isOk());
+
+        assertThat(ollama.chatRequests().get(1)).contains("Crypto-assets").contains("ABOVE_MAX")
+                .contains("7.70").contains("4850.00");
+        assertThat(output).contains("tool_call client=C-1002 tool=policyCheck");
+    }
+
+    @Test
     void rejectsUnknownClientWithoutCallingTheModel() throws Exception {
         ask("C-9999", "What's my exposure to tech?").andExpect(status().isForbidden());
 

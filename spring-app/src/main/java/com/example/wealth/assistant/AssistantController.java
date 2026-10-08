@@ -5,6 +5,9 @@ import static com.example.wealth.audit.AuditedToolCallback.audited;
 import com.example.wealth.portfolio.PortfolioRepository;
 import com.example.wealth.portfolio.PortfolioRepository.UnknownClientException;
 import com.example.wealth.tools.PortfolioTools;
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.Parameter;
+import io.swagger.v3.oas.annotations.media.Schema;
 import java.util.Map;
 import org.springframework.ai.chat.client.ChatClient;
 import org.springframework.ai.chat.client.advisor.vectorstore.QuestionAnswerAdvisor;
@@ -67,12 +70,15 @@ class AssistantController {
         this.repository = repository;
     }
 
-    record Question(String question) {}
+    record Question(@Schema(example = "Is my crypto exposure within policy?") String question) {}
 
     record Answer(String answer) {}
 
+    @Operation(summary = "Ask the assistant a question about the signed-in client's portfolio or the policy documents")
     @PostMapping("/assistant")
-    Answer ask(@RequestHeader("X-Client-Id") String clientId, @RequestBody Question question) {
+    Answer ask(@Parameter(description = "Stands in for the authenticated client (ADR 0001)", example = "C-1002")
+               @RequestHeader("X-Client-Id") String clientId,
+               @RequestBody Question question) {
         // Reject unknown clients before spending a model call.
         repository.find(clientId);
         String answer = chatClient.prompt()

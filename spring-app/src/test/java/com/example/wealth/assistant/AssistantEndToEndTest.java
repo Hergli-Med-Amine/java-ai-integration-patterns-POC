@@ -1,6 +1,7 @@
 package com.example.wealth.assistant;
 
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
@@ -81,31 +82,32 @@ class AssistantEndToEndTest {
     @Test
     void documentExcerptsDoNotStopTheModelFromUsingTools() throws Exception {
         ollama.respond("""
-                {"model":"test","message":{"role":"assistant","content":"ok"},"done":true,"done_reason":"stop"}""");
+                {"model":"test","message":{"role":"assistant","content":"Let me check."},
+                 "done":true,"done_reason":"stop"}""");
 
         ask("C-1002", "Is my crypto exposure within policy?").andExpect(status().isOk());
 
-        // Spring AI's default advisor template says to answer only from the excerpts, which suppressed tool calls.
         assertThat(ollama.chatRequests()).singleElement().asString()
                 .doesNotContain("If the answer is not in the context")
                 .contains("For figures about the client's portfolio, use the tools");
     }
 
     @Test
-    void policyCheckToolReportsTheBreachComputedInJava(CapturedOutput output) throws Exception {
+    void policyCheckIsComputedInCodeAndReturnedToTheModel(CapturedOutput output) throws Exception {
         ollama.respond("""
                 {"model":"test","message":{"role":"assistant","content":"",
                  "tool_calls":[{"function":{"name":"policyCheck","arguments":{}}}]},
                  "done":true,"done_reason":"stop"}""");
         ollama.respond("""
-                {"model":"test","message":{"role":"assistant","content":"Crypto exceeds the 5% limit by 7.70 points."},
+                {"model":"test","message":{"role":"assistant","content":"Your crypto exposure is above the 5% limit."},
                  "done":true,"done_reason":"stop"}""");
 
         ask("C-1002", "Is my crypto exposure within policy?").andExpect(status().isOk());
 
-        assertThat(ollama.chatRequests().get(1)).contains("Crypto-assets").contains("ABOVE_MAX")
-                .contains("7.70").contains("4850.00");
-        assertThat(output).contains("tool_call client=C-1002 tool=policyCheck");
+        assertThat(ollama.chatRequests()).hasSize(2);
+        assertThat(ollama.chatRequests().get(1))
+                .contains("Crypto-assets").contains("ABOVE_MAX").contains("7.70").contains("4850.00");
+        assertThat(output).contains("tool_call client=C-1002 tool=policyCheck").contains("outcome=success");
     }
 
     @Test
@@ -113,6 +115,14 @@ class AssistantEndToEndTest {
         ask("C-9999", "What's my exposure to tech?").andExpect(status().isForbidden());
 
         assertThat(ollama.chatRequests()).isEmpty();
+    }
+
+    @Test
+    void publishesTheOpenApiDescriptionAndSwaggerUi() throws Exception {
+        mockMvc.perform(get("/v3/api-docs"))
+                .andExpect(status().isOk())
+                .andExpect(jsonPath("$.paths['/assistant'].post").exists());
+        mockMvc.perform(get("/swagger-ui/index.html")).andExpect(status().isOk());
     }
 
     private ResultActions ask(String clientId, String question) throws Exception {

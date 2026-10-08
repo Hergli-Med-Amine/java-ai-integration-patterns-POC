@@ -22,6 +22,8 @@ curl -s localhost:8080/assistant -H 'X-Client-Id: C-1002' -H 'Content-Type: appl
      -d '{"question":"What is my exposure to tech?"}'
 ```
 
+Instead of curl, open Swagger UI at http://localhost:8080/swagger-ui/index.html, choose "Try it out" on `POST /assistant`, and set the client id and question. It is there to make the PoC easier to try locally, not part of the architecture being compared.
+
 `OLLAMA_BASE_URL`, `OLLAMA_CHAT_MODEL` and `OLLAMA_EMBEDDING_MODEL` override the defaults. `X-Client-Id` stands in for an authenticated user (ADR 0001); the fixture clients are `C-1001`, `C-1002` and `C-1003`. Tests run without Ollama: `mvn test`.
 
 The remaining sections (architecture, comparison, findings, recommendations, limitations) are written as the apps are built.

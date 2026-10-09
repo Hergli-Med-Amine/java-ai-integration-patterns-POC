@@ -24,6 +24,15 @@ curl -s localhost:8080/assistant -H 'X-Client-Id: C-1002' -H 'Content-Type: appl
 
 Instead of curl, open Swagger UI at http://localhost:8080/swagger-ui/index.html, choose "Try it out" on `POST /assistant`, and set the client id and question. It is there to make the PoC easier to try locally, not part of the architecture being compared.
 
+The same tools can be served over MCP at `http://localhost:8080/mcp` (streamable HTTP, stateless). MCP requests carry no user identity in this PoC, so the MCP server acts for one client that you choose explicitly, and exposes no tools otherwise (ADR 0007):
+
+```
+WEALTH_MCP_CLIENT_ID=C-1001 mvn spring-boot:run
+npx @modelcontextprotocol/inspector     # transport "Streamable HTTP", URL http://localhost:8080/mcp, then Tools > List Tools
+```
+
+The app listens on 127.0.0.1 only.
+
 `OLLAMA_BASE_URL`, `OLLAMA_CHAT_MODEL` and `OLLAMA_EMBEDDING_MODEL` override the defaults. `X-Client-Id` stands in for an authenticated user (ADR 0001); the fixture clients are `C-1001`, `C-1002` and `C-1003`. Tests run without Ollama: `mvn test`.
 
 The remaining sections (architecture, comparison, findings, recommendations, limitations) are written as the apps are built.

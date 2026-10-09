@@ -26,24 +26,24 @@ public class PortfolioTools {
 
     public record PortfolioSummary(String name, RiskProfile riskProfile, BigDecimal portfolioValue) {}
 
-    @Tool(description = "Name, risk profile and total portfolio value in EUR of the signed-in client.")
+    @Tool(description = "Name, risk profile and total portfolio value in EUR of the current client.")
     public PortfolioSummary portfolioSummary(ToolContext context) {
         Client client = currentClient(context);
         return new PortfolioSummary(client.name(), client.riskProfile(), client.portfolioValue());
     }
 
-    @Tool(description = "All holdings of the signed-in client with asset class, sector, region, quantity, price and market value in EUR.")
+    @Tool(description = "All holdings of the current client with asset class, sector, region, quantity, price and market value in EUR.")
     public List<Holding> holdings(ToolContext context) {
         return currentClient(context).holdings();
     }
 
-    @Tool(description = "Exposure of the signed-in client's portfolio by one dimension: market value in EUR and percent of portfolio value per group, largest first.")
+    @Tool(description = "Exposure of the current client's portfolio by one dimension: market value in EUR and percent of portfolio value per group, largest first.")
     public Exposure exposure(@ToolParam(description = "SECTOR, REGION or ASSET_CLASS") Exposure.Dimension dimension,
                              ToolContext context) {
         return currentClient(context).exposureBy(dimension);
     }
 
-    @Tool(description = "Checks the signed-in client's portfolio against the investment policy limits: the asset-class ranges of the client's risk profile and the crypto-asset rules. For each limit: current percent, allowed range, status (WITHIN, ABOVE_MAX, BELOW_MIN, NOT_PERMITTED) and the deviation in percentage points and EUR. Also lists the limits it does not check. Use it for any question about whether the portfolio is within policy.")
+    @Tool(description = "Checks the current client's portfolio against the investment policy limits: the asset-class ranges of the client's risk profile and the crypto-asset rules. For each limit: current percent, allowed range, status (WITHIN, ABOVE_MAX, BELOW_MIN, NOT_PERMITTED) and the deviation in percentage points and EUR. Also lists the limits it does not check. Use it for any question about whether the portfolio is within policy.")
     public PolicyCheck policyCheck(ToolContext context) {
         return currentClient(context).policyCheck();
     }

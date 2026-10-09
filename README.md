@@ -33,6 +33,17 @@ npx @modelcontextprotocol/inspector     # transport "Streamable HTTP", URL http:
 
 The app listens on 127.0.0.1 only.
 
+The Quarkus app does the same on port 8081, with the same data, environment variables and behaviour:
+
+```
+cd quarkus-app
+mvn quarkus:dev                                   # or: WEALTH_MCP_CLIENT_ID=C-1001 mvn quarkus:dev
+curl -s localhost:8081/assistant -H 'X-Client-Id: C-1002' -H 'Content-Type: application/json' \
+     -d '{"question":"What is my exposure to tech?"}'
+```
+
+Swagger UI is at http://localhost:8081/q/swagger-ui and MCP at `http://localhost:8081/mcp`. Quarkus Dev Services are switched off, so no Docker is needed.
+
 `OLLAMA_BASE_URL`, `OLLAMA_CHAT_MODEL` and `OLLAMA_EMBEDDING_MODEL` override the defaults. `X-Client-Id` stands in for an authenticated user (ADR 0001); the fixture clients are `C-1001`, `C-1002` and `C-1003`. Tests run without Ollama: `mvn test`.
 
 The remaining sections (architecture, comparison, findings, recommendations, limitations) are written as the apps are built.
